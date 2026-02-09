@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
 
-enum UserRole {
+export enum UserRole {
   user = "user",
   admin = "admin"
 }
@@ -28,5 +28,6 @@ export class User {
     default: UserRole.user,
   })
   role: UserRole
-  
+
+
 }
