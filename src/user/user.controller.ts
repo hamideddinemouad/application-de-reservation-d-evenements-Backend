@@ -5,7 +5,8 @@ import { AuthGuard } from "src/auth/auth.guard";
 
 @Controller('users')
 export class UserController{
-  constructor (private readonly usersService : UserService){}
+  constructor (private readonly usersService : UserService
+  ){}
 
   @Get()
   @UseGuards(AuthGuard)

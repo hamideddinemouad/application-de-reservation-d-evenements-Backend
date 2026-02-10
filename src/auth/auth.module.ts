@@ -7,15 +7,8 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService, JwtModule],
-  imports: [UsersModule, JwtModule.registerAsync({
-    inject: [ConfigService],
-    useFactory: (config: ConfigService) => ({
-      secret: config.get('JWT_ACCESS'),
-      global: true,
-      signOptions: { expiresIn: config.get('JWT_ACCESS_EXPIRES_IN') },
-    })
-  })]
+  providers: [AuthService],
+  imports: [UsersModule],
 })
 
 export class AuthModule { }

@@ -4,12 +4,14 @@ import { User } from "./user.entity";
 import { UserController} from "./user.controller";
 import { UserService } from "./user.service";
 import { AuthGuard } from "src/auth/auth.guard";
-import { JwtService } from "@nestjs/jwt";
+import { JwtModule, JwtService } from "@nestjs/jwt";
+import { AuthModule } from "src/auth/auth.module";
+
 
 @Module({
   imports : [TypeOrmModule.forFeature([User])],
   controllers : [UserController],
-  providers : [UserService, JwtService],
+  providers : [UserService, AuthGuard],
   exports : [UserService,]
 })
 

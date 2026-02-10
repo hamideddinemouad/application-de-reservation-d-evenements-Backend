@@ -10,8 +10,7 @@ export class AuthService {
   constructor(private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly config: ConfigService
-  ) {
-  }
+  ) { }
   async login(LoginDto: LoginDto) {
     const { email, password } = LoginDto;
     const user = await this.userService.findByEmail(email);
@@ -24,8 +23,12 @@ export class AuthService {
       id: user.id,
       role: user.role,
     }
-
-    const accessToken =  await this.jwtService.signAsync(payload);
+    const accessToken = await this.jwtService.signAsync(payload);
+    // res.cookie("access_token", token, {
+    //   httpOnly: true,
+    //   sameSite: "lax",
+    //   secure: false, // true in production HTTPS
+    // });
     return {
       access_token: accessToken,
     }
