@@ -9,9 +9,10 @@ export class AuthGuard implements CanActivate {
     async canActivate(context: ExecutionContext, ) {
          
         const request = context.switchToHttp().getRequest();
-        const token = this.extractTokenFromHeader(request);
-
+        const token = this.extractTokenFromHeader(request)
+         || request.cookies?.access_token;
         if(!token){
+            console.log(request.cookies)
             throw new UnauthorizedException("missing token")
         }
         try {

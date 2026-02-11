@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Request, UseGuards, HttpCode, Res } from "@nestjs/common";
+import { Body, Controller, Post, Get, UseGuards, HttpCode, Res, Req } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { RegisterDto } from "./dto/register.dto";
 import { LoginDto } from "./dto/login.dto";
@@ -6,6 +6,7 @@ import { AuthGuard } from "./auth.guard";
 import { JwtService } from "@nestjs/jwt";
 import { PassThrough } from "stream";
 import type { Response } from "express";
+import type { Request } from "express";
 
 @Controller('auth')
 export class AuthController {
@@ -25,7 +26,7 @@ export class AuthController {
   }
   @UseGuards(AuthGuard)
   @Get('me')
-  getProfile(@Request() req) {
+  getProfile(@Req() req) {
     return req.user;
   }
 }

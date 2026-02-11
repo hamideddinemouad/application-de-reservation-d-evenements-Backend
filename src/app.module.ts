@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { UsersModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from "@nestjs/jwt";
+import { EventModule } from './event/event.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { JwtModule } from "@nestjs/jwt";
     }),
     UsersModule, 
     AuthModule, 
+    EventModule,
     ],
   controllers: [AppController],
   providers: [AppService],
